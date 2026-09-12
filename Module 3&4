@@ -1,35 +1,28 @@
 exam1 = float(input("Enter the first exam score:"))
 exam2 = float(input("Enter the second exam score:"))
 total_score = (exam1 * 0.60) + (exam2 * 0.40)
-print(f"Total weighted score: {total_score:.}")
+print(f"Total weighted score: {total_score:.2f}")
 
 ticker = input("Enter stock ticker symbol:")
 shares = int(input("Enter number of shares:"))
 cost = float(input("Enter cost per share:"))
 investment = shares * cost
-print(f"Amount invested in {ticker}: $
-{investment:.2f}")
+print(f"Amount invested in {ticker}: $ {investment:.2f}")
 
 last_name = input("Enter student's last name:")
 midterm = float(input("Enter midterm exam score:"))
 final = float(input("Enter final exam score:"))
 total_points = (midterm * 0.40) + (final * 0.60)
-print(f"Student:{last_name}, Total Exam Points:
-{total_points:.2f}")
+print(f"Student: {last_name}, Total Exam Points: {total_points:.2f}")
 
-total_received = float(input("Enter the total
-amount received:"))
-each_share = total_received / 3
-print(f"Each person receives: $
-{each_share:.2f}")
+amount_recevied = float(input("Enter the total amount received for the job:"))
+share = amount_recevied/ 3
+print (f"Each person will receive: ${share:.2f}")
 
-purchase_price = float(input("Enter purchase 
-price per share:"))
-current_price = float(input("Enter current stock
-price:"))
+purchase_price = float(input("Enter purchase price per share:"))
+current_price = float(input("Enter current stock price:"))
 quantity = int(input("Enter quantity of stock:"))
-value_change = (current_price - purchase_price) 
-* quantity
-print (f"Value change of stock: $
-{value_change:.2f}")
+value_change = (current_price - purchase_price) * quantity
+print (f"Value change of stock: $ {value_change:.2f}")
+
 Answered module 3&4 assignment sheet
