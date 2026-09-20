@@ -1,3 +1,5 @@
+#1
+
 quantity = int(input("Enter the quantity: "))
 
 if quantity >= 1000:
@@ -14,6 +16,8 @@ print(f"Unit Price: ${unit_price:.2f}")
 print(f"Extended Price: ${extended_price:.2f}")
 print(f"Tax: ${tax:.2f}")
 print(f"Total: ${total:.2f}")
+
+#2
 
 quantity = int(input("Enter the quantity of widgets"))
 quantity = 10000
@@ -34,6 +38,8 @@ print(f"Extended Price: ${extended_price:.2f}")
 print(f"Tax Amount: ${tax_amount:.2f}")
 print(f"Total: ${total:.2f}")
 
+#3
+
 part_number = input("Enter the part number: ")
 quantity = int(input("Enter the quantity: "))
 
@@ -51,3 +57,71 @@ print(f"Part Number: {part_number}")
 print(f"Unit Cost: ${unit_cost:.2f}")
 print(f"Total Cost: ${total_cost:.2f}")
 
+#4
+
+principle = float(input("Enter the principle amount: "))
+years = int(input("Enter the years to maturity: "))
+
+interest_rate = 0.0
+
+if principle > 100000:
+    if years == 5:
+        interest_rate = 0.06
+    elif years == 10:
+        interest_rate = 0.05
+    else:
+        interest_rate = 0.02
+if 50000 <= principle <= 100000:
+    if years == 5:
+        interest_rate = 0.04
+    elif years == 10:
+        interest_rate = 0.03
+    else:
+        interest_rate = 0.02
+else:
+    interest_rate = 0.02
+
+first_year_interest = principle * interest_rate
+print(f"Principle: ${principle:.2f}")
+print(f"Interest Rate: {interest_rate:.0%}")
+print(f"First Year Interest: ${first_year_interest:,.2f}")
+
+#5
+
+ try:
+    num_tickets = int(input("Enter the number of concert tickets: "))
+    if num_tickets >= 25:
+     price_per_ticket = 50
+    elif 10 <= num_tickets <= 24:
+     price_per_ticket = 60
+    elif 5 <= num_tickets <= 9:
+     price_per_ticket = 70
+    else:
+     price_per_ticket = 75
+
+    total_cost = num_tickets * price_per_ticket
+    print(f"Number of Tickets: {num_tickets}")
+    print(f"Price per Ticket: ${price_per_ticket}")
+    print(f"Total Cost: ${total_cost}")
+except ValueError:
+    print("Invalid input. Please enter a whole number for tickets.")
+
+#6
+
+last_name = input("Enter employee last name: ")
+salary = float(input("Enter employee salary: "))
+job_level = int(input("Enter employee job level: "))
+
+if job_level >= 10:
+    bonus_rate = 0.25
+elif 5 <= job_level <= 9:
+    bonus_rate = 0.20
+else:
+    bonus_rate = 0.10
+
+bonus = salary * bonus_rate
+
+print(f"Employee Last Name: {last_name}")
+print(f"Bonus: ${bonus:.2f}") 
+
+Answered Module 5&6 questions
