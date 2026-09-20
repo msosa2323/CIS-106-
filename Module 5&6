@@ -1,1 +1,53 @@
+quantity = int(input("Enter the quantity: "))
+
+if quantity >= 1000:
+  unit_price = 3.00
+else:
+  unit_price = 5.00
+
+extended_price = quantity * unit_price
+tax = 0.07 * extended_price
+total = extended_price + tax
+
+print(f"Quantity: {quantity}")
+print(f"Unit Price: ${unit_price:.2f}")
+print(f"Extended Price: ${extended_price:.2f}")
+print(f"Tax: ${tax:.2f}")
+print(f"Total: ${total:.2f}")
+
+quantity = int(input("Enter the quantity of widgets"))
+quantity = 10000
+price = 0
+    
+if quantity < 5000:
+        price = 10
+elif 5000 <= quantity <= 10000:
+        price = 20
+else:
+        price = 30
+
+extended_price = price
+tax_amount = extended_price * 0.07
+total = extended_price + tax_amount
+
+print(f"Extended Price: ${extended_price:.2f}")
+print(f"Tax Amount: ${tax_amount:.2f}")
+print(f"Total: ${total:.2f}")
+
+part_number = input("Enter the part number: ")
+quantity = int(input("Enter the quantity: "))
+
+if part_number == "10" or part_number == "55":
+    unit_cost = 1.00
+elif part_number == "99":
+    unit_cost = 2.00
+elif part_number == "80" or part_number == "70":
+    unit_cost = 3.00
+else:
+    unit_cost = 5.00
+
+total_cost = quantity * unit_cost
+print(f"Part Number: {part_number}")
+print(f"Unit Cost: ${unit_cost:.2f}")
+print(f"Total Cost: ${total_cost:.2f}")
 
