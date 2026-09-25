@@ -1,1 +1,80 @@
+number = 1
+
+while number <= 25:
+    print(number)
+    number += 2
+
+
+calculate_bonuses():
+Reads employee data from a file, calculates bonuses, and displays results.
+
+try:
+    with open("employees.txt", "r") as file:
+        lines = file.readlines()
+except FileNotFoundError:
+    print("Error: 'employees.txt' not found. Please create the file with employee data.")
+    return
+
+total_bonuses = 0
+print("Employee Last Name | Salary | Bonus Rate | Bonus Amount")
+print("------------------------------------------------------")
+
+for line in lines:
+    try:
+        last_name, salary_str = line.strip().split(',')
+        salary = float(salary_str)
+
+        if salary >= 100000.00
+            bonus_rate = 0.20
+        elif salary >= 50000.00:
+            bonus_rate = 0.15
+        else:
+            bonus_rate = 0.10
+
+       bonus_amount = salary * bonus_rate
+       total_bonuses += bonus_amount
+
+       print(f"{last_name:<20} | {salary:<8.2f} | {bonus_rate*100:<10.0f}% | {bonus_amount:.2f}")
+
+  except ValueError:
+       print(f"Skipping invalid line: {line.strip()}")
+  except IndexError:
+       print(f"Skipping malformed line: {line.strip()}")
+
+print("------------------------------------------------------")
+print(f"Total Bonuses Paid Out: {total_bonuses:.2f}")
+
+with open("employees.txt", "w") as f:
+    f.write("Adams,50000.00\n")
+    f.write("Baker,75000.00\n")
+    f.write("Smith,45000.00\n")
+    f.write("Johnson,120000.00\n")
+    f.write("Williams,60000.00\n")
+
+
+total_bonuses = 0 
+with open(filename, 'r') as f:
+    for line in f:
+        name, salary_str = line.strip().split(',')
+        salary = float(salary_str)
+
+        if salary >= 100000.00:
+            bonus_rate = 0.20
+        else:
+            bonus_rate = 0.10
+
+        bonus = salary * bonus_rate
+        total_bonuses += bonus
+
+        print(f"Employee: {name}, Salary: ${salary:,.2f}, Bonus: ${bonus:,.2f}")
+
+print(f"\nTotal bonuses paid out: ${total_bonuses:,.2f})
+
+with open("employees.txt", "w") as f:
+    f.write("Adams,50000.00\n")
+    f.write("Baker,75000.00\n")
+    f.write("Smith,45000.00\n")
+    f.write("Johnson,120000.00\n")
+    f.write("Williams,90000.00\n")
+
 
