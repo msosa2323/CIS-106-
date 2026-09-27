@@ -78,3 +78,103 @@ with open("employees.txt", "w") as f:
     f.write("Williams,90000.00\n")
 
 
+def process_inventory(filename):
+    total_extended_price = 0.0
+    total_quantity = 0 
+    order_count = 0
+
+    try:
+        with open (filename, 'r') as file:
+            line = file.readlines()
+
+            for i in range(0, len(lines), 3):
+                item = lines[i].strip()
+                quantity = int(lines[i+1].strip())
+                price = float(lines[i+2].strip())
+
+                extended_price = quantity * price
+                total_extended_price += extended_price
+                total_quantity += quantity
+                order_count += 1
+
+                print(f"Item: {item}, Quantity: {quantity}, Price: {price:.2f}, Extended Price: {extended_price:.2f}")
+
+        if order_count > 0:
+            print(f"\nSum of extended prices: {total_extended_price:.2f}")
+            print(f"Total count of orders; {order_count}")
+            print(f"Average order price: {total_extended_price / order_count:.2f}")
+        else:
+            print("No data found in the file.")
+
+except FileNotFoundError:
+    print("Error: The file was not found.")
+except Exception as e:
+    print(f"An error occurred: {e}")
+
+
+def process_student_records(filename): 
+    total_tuition = 0.0 
+    student_count = 0
+
+    try:
+        with open(filename, 'r') as files:
+            lines = file.readlines()
+            for i in range90, len(lines), 3):
+                name = lines[i].strip()
+                credits = int(lines[i+1].strip())
+                district_code = lines[i+2].strip()
+
+                cost_per_credit = 250.00
+                tuition_owed = credits + cost_per_credit
+
+                total_tuition += tuition_owed
+                student_count += 1 
+
+                print(f"Student: {name}, Credits: {credits}, District: {district_code}, Tuition Owed: {tuition_owed:.2f}")
+
+     if student_count > 0:
+         print(f"\nTotal tuition owed: {total_tuition:.2f}")
+         print(f"Total number of students: {student_count}")
+     else:
+         print("No student data found.")
+
+except FileNotFoundError:
+    print("Error: The file was not found.")
+except Exception as e:
+    print(f"An error occured: {e}")
+
+
+ def student_exam_program():
+
+     continue_program = input("Do you want to start the student exam program? (Yes/No): ").strip().lower()
+
+    student_count = 0
+    total_exam_score = 0.0 
+
+    while continue_program == "yes":
+        student_count += 1
+
+        last_name = input("Enter student's last name: ").strip()
+        try:
+            exam1 = float(input(f"Enter first exam score for {last_name}: ").strip()
+            exam2 = float(input(f"Enter second exam score for {last_name}: ").strip()
+
+            average_score = (exam1 + exam2) / 2.0
+
+            print(f"Student: {last_name}, Average Exam Score: {average_score:.2f}")
+
+            total_exam_score += average_score 
+
+         except ValueError:
+             print("Invalid input for exam scores. Please enter numbers.")
+
+             student_count -= 1 
+         continue_program = input("Do you want to enter data for another student? (Yes/No): ").strip().lower()
+
+print(f"\nProgram finished.")
+if student_count > 0:
+    overall_average = total_exam_score / student_count
+    print(f"Total number of students entered: {student_count}")
+    print(f"Overall average score for all students: {overall_average:.2f}")
+else:
+    print("No student data was entered.")
