@@ -1,48 +1,35 @@
+1)
+
 number = 1
 
 while number <= 25:
     print(number)
     number += 2
 
+2)
 
-calculate_bonuses():
-Reads employee data from a file, calculates bonuses, and displays results.
+def display_numbers_with_increment():
 
-try:
-    with open("employees.txt", "r") as file:
-        lines = file.readlines()
-except FileNotFoundError:
-    print("Error: 'employees.txt' not found. Please create the file with employee data.")
-    return
-
-total_bonuses = 0
-print("Employee Last Name | Salary | Bonus Rate | Bonus Amount")
-print("------------------------------------------------------")
-
-for line in lines:
     try:
-        last_name, salary_str = line.strip().split(',')
-        salary = float(salary_str)
+        start = int(input("Enter the start value: "))
+        stop = int(input("Enter the stop value:: "))
+        increment = int(input("Enter the increment value: "))
+    except ValueError:
+        print("Invalid input. Please enter whole numberss for all values.")
+        return
 
-        if salary >= 100000.00
-            bonus_rate = 0.20
-        elif salary >= 50000.00:
-            bonus_rate = 0.15
-        else:
-            bonus_rate = 0.10
+    if increment == 0:
+        print("Increment cannot be zero.")
+        return
 
-       bonus_amount = salary * bonus_rate
-       total_bonuses += bonus_amount
+    current_value = start 
+    print("\nNumbers generated:")
 
-       print(f"{last_name:<20} | {salary:<8.2f} | {bonus_rate*100:<10.0f}% | {bonus_amount:.2f}")
+    while (increment > 0 and current_value <= stop) or (increment < 0 and current_value >= stop):
+        print(current_value)
+        current_value += increment
 
-  except ValueError:
-       print(f"Skipping invalid line: {line.strip()}")
-  except IndexError:
-       print(f"Skipping malformed line: {line.strip()}")
-
-print("------------------------------------------------------")
-print(f"Total Bonuses Paid Out: {total_bonuses:.2f}")
+display_numbers_with_increment()
 
 with open("employees.txt", "w") as f:
     f.write("Adams,50000.00\n")
@@ -51,130 +38,164 @@ with open("employees.txt", "w") as f:
     f.write("Johnson,120000.00\n")
     f.write("Williams,60000.00\n")
 
+3)
 
-total_bonuses = 0 
-with open(filename, 'r') as f:
-    for line in f:
-        name, salary_str = line.strip().split(',')
+def calculate_bonuses():
+    lines = []
+    try:
+        with open("employees.txt", "r") as file:
+            lines = file.readlines()
+    except FileNotFoundError:
+        print("Error: 'employees.txt' not found. Please create the file with employee data.")
+        return lines
+    
+    return lines
+
+total_bonuses = 0
+print("Employee Last Name | Salary | Bonus Rate | Bonus Amount")
+print("------------------------------------------------------")
+
+lines = calculate_bonuses()
+
+for line in lines:
+    try:
+        last_name, salary_str = line.strip().split(',')
         salary = float(salary_str)
 
         if salary >= 100000.00:
             bonus_rate = 0.20
+        elif salary >= 50000.00:
+            bonus_rate = 0.15
         else:
             bonus_rate = 0.10
+            
+        bonus_amount = salary * bonus_rate
+        total_bonuses += bonus_amount
 
-        bonus = salary * bonus_rate
-        total_bonuses += bonus
+        print(f"{last_name:<20} | {salary:<8.2f} | {bonus_rate*100:<10.0f}% | {bonus_amount:.2f}")
 
-        print(f"Employee: {name}, Salary: ${salary:,.2f}, Bonus: ${bonus:,.2f}")
+    except ValueError:
+       print(f"Skipping invalid line: {line.strip()}")
+    except IndexError:
+       print(f"Skipping malformed line: {line.strip()}")
 
-print(f"\nTotal bonuses paid out: ${total_bonuses:,.2f})
+print("------------------------------------------------------")
+print(f"Total Bonuses Paid Out: {total_bonuses:.2f}")
 
-with open("employees.txt", "w") as f:
-    f.write("Adams,50000.00\n")
-    f.write("Baker,75000.00\n")
-    f.write("Smith,45000.00\n")
-    f.write("Johnson,120000.00\n")
-    f.write("Williams,90000.00\n")
+4)
 
+def process_order_data(filename="orders.txt"):
+    """Process order data from a text file.
 
-def process_inventory(filename):
-    total_extended_price = 0.0
-    total_quantity = 0 
-    order_count = 0
-
+    Args:
+        filename(str): The name of the text file containing order data.
+                       Each order should be represented by three lines:
+                       item name, quantity, and price.
+    """
+    total_extended_price = 0
+    order_count = 0 
+    
     try:
-        with open (filename, 'r') as file:
-            line = file.readlines()
+        with open(filename, 'r') as f:
+            lines = [line.strip() for line in f]
 
-            for i in range(0, len(lines), 3):
-                item = lines[i].strip()
-                quantity = int(lines[i+1].strip())
-                price = float(lines[i+2].strip())
+        i = 0
+        while i < len(lines):
+            item = lines[i] 
+            quantity = int(lines[i+1])
+            price = float(lines[i+2])
 
-                extended_price = quantity * price
-                total_extended_price += extended_price
-                total_quantity += quantity
-                order_count += 1
+            extended_price = quantity * price
+            total_extended_price += extended_price
+            order_count += 1 
 
-                print(f"Item: {item}, Quantity: {quantity}, Price: {price:.2f}, Extended Price: {extended_price:.2f}")
+            print(f"Item: {item}, Quantity: {quantity}, Price: ${price:.2f}, Extended Price: ${extended_price:.2f}")
 
-        if order_count > 0:
-            print(f"\nSum of extended prices: {total_extended_price:.2f}")
-            print(f"Total count of orders; {order_count}")
-            print(f"Average order price: {total_extended_price / order_count:.2f}")
+            i += 3
+        average_order_price = total_extended_price / order_count if order_count > 0 else 0 
+
+        print("\n--- Order Summary ---")
+        print(f"Total Extended Price: ${total_extended_price:.2f}")
+        print(f"Number of Orders: {order_count}")
+        print(f"Average Order Price: ${average_order_price:.2f}")
+
+    except FileNotFoundError:
+        print(f"Error: The file '{filename}' was not found.")
+    except ValueError:
+        print("Error: Ensure quantity and price are valid numbers in the file.")
+    except IndexError:
+        print("Error: Incomplete data for an order in the file. Ensure each item has quantity and price.")
+
+with open("orders.txt", 'w') as f:
+    f.write("Widget\n")
+    f.write("10\n")
+    f.write("50\n")
+    f.write("Hammer\n")
+    f.write("2\n")
+    f.write("10\n")
+    f.write("Saw\n")
+    f.write("7\n")
+    f.write("10\n")
+
+process_order_data("orders.txt")
+
+5)
+
+def calculate_tuition():
+    student_data = []
+    while True:
+        user_input = input("Do you want to continue? (Yes/No): ")
+        if user_input.strip().lower() != "yes":
+            break
+
+        last_name = input("Enter student last name: ").strip()
+        district_code = input("Enter district code (I or O): ").strip().upper()
+
+        if district_code == "I":
+            cost_per_credit = 500.00
+        elif district_code == "O":
+            cost_per_credit = 750.00
         else:
-            print("No data found in the file.")
+            print("Invalid district code. Please enter 'I' or 'O'.")
+            continue
 
-except FileNotFoundError:
-    print("Error: The file was not found.")
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-
-def process_student_records(filename): 
-    total_tuition = 0.0 
-    student_count = 0
-
-    try:
-        with open(filename, 'r') as files:
-            lines = file.readlines()
-            for i in range90, len(lines), 3):
-                name = lines[i].strip()
-                credits = int(lines[i+1].strip())
-                district_code = lines[i+2].strip()
-
-                cost_per_credit = 250.00
-                tuition_owed = credits + cost_per_credit
-
-                total_tuition += tuition_owed
-                student_count += 1 
-
-                print(f"Student: {name}, Credits: {credits}, District: {district_code}, Tuition Owed: {tuition_owed:.2f}")
-
-     if student_count > 0:
-         print(f"\nTotal tuition owed: {total_tuition:.2f}")
-         print(f"Total number of students: {student_count}")
-     else:
-         print("No student data found.")
-
-except FileNotFoundError:
-    print("Error: The file was not found.")
-except Exception as e:
-    print(f"An error occured: {e}")
-
-
- def student_exam_program():
-
-     continue_program = input("Do you want to start the student exam program? (Yes/No): ").strip().lower()
-
-    student_count = 0
-    total_exam_score = 0.0 
-
-    while continue_program == "yes":
-        student_count += 1
-
-        last_name = input("Enter student's last name: ").strip()
         try:
-            exam1 = float(input(f"Enter first exam score for {last_name}: ").strip()
-            exam2 = float(input(f"Enter second exam score for {last_name}: ").strip()
+            credits = int(input("Enter number of credits taken: "))
+            if credits < 0:
+                print("Credits cannot be negative. Please try again.")
+                continue
+        except ValueError:
+            print("Invalid input. Credits must be an integer.")
+            continue
 
-            average_score = (exam1 + exam2) / 2.0
+        tuition_owed = credits * cost_per_credit
+        student_data.append({"name": last_name, "tuition": tuition_owed})
 
-            print(f"Student: {last_name}, Average Exam Score: {average_score:.2f}")
+    if not student_data:
+        print("No student data entered.")
+        return
 
-            total_exam_score += average_score 
+    print("\n--- Tuition Summary ---")
+    for student in student_data:
+        print(f"Student: {student['name']}, Tuition Owed: ${student['tuition']:.2f}")
 
-         except ValueError:
-             print("Invalid input for exam scores. Please enter numbers.")
+    print(f"\nTotal number of students processed: {len(student_data)}")
 
-             student_count -= 1 
-         continue_program = input("Do you want to enter data for another student? (Yes/No): ").strip().lower()
 
-print(f"\nProgram finished.")
-if student_count > 0:
-    overall_average = total_exam_score / student_count
-    print(f"Total number of students entered: {student_count}")
-    print(f"Overall average score for all students: {overall_average:.2f}")
-else:
-    print("No student data was entered.")
+if __name__ == "__main__":
+    calculate_tuition()
+
+6)
+
+continue_program = input("Do you want to run this program (Yes/No): ")
+
+while continue_program.lower() == "yes":
+
+    print("Running the program..")
+
+    continue_program = input("Do you want to continue? (Yes/No): ")
+
+print("Program has ended.")
+
+
+Answered Module 7&8 
