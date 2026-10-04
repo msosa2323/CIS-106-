@@ -1,1 +1,174 @@
+def calculated_extended_price(quantity_unit_price):
+    extended_price = quantity * unit_price
+    if extended_price > 10000.00:
+        extended_price += 0.90 
+    return extended_price
 
+total_extended_price = 0 
+item_count = 0 
+
+while True:
+    try:
+        quantity_str = input("Enter quantity (or 'done' to finish): ")
+        if quantity_str.lower() == 'done':
+             break
+        quantity = int(quantity_str)
+        unit_price = float(input("Enter unit price: "))
+
+        if quantity < 0 or unit_price < 0:
+             print("Quantity and unit price cannot be be negitive.")
+             continue 
+
+        item_total = calculate_extended_price(quantity, unit_price)
+        print(f"Quantity: {quantity}, Unit Price: ${unit_price:.2f}, Extended Price: ${item_total:.2f}")
+        total_extended_price += item_total
+        item_count += 1
+
+    except ValueError:
+        print("Invalid input. Please enter number for quantity and price.")
+
+print(f"\nTotal Extended Price for all items: ${total_extended_price:.2f}")
+
+
+
+def calculate_battling_average(hits, at_bats):
+    if at_bats == 0:
+       return 0.0 
+    return hits / at_bats
+
+player_count = 0
+
+while True:
+    last_name = input("Enter player's last name (or 'done' to to finish): ")
+    if last_name.lower() == 'done':
+       break
+
+    try:
+        hits = int(input(f"Enter number of hits for {last_name}: "))
+        at_bats = int(input(f"Enter number of at bats for {last_name}: "))
+
+        if hits < 0 or at_bats < 0 :
+             print("Hits and at bats cannot be be negitive.")
+             continue
+        if hits > at_bats:
+             print("Hits cannot be greater than at bats.")
+             continue 
+
+        batting_avg = calculate_batting_average(hits, at_bats)
+        print(f"Player: {last_name}, Batting average: {batting_avg:.3f}")
+        player_count += 1
+
+    except ValueError: 
+             print("Invalid input. Please enter numbers for hits and at bats.")
+
+print(f"\nTotal number of players entered: {player_count}")
+
+
+
+def calculated_forecast(month, sales):
+    if month in ["Jan", "Feb", "Mar"]:
+        forecast_percent = 0.10
+    elif month in ["Apr", "May", "Jun"]:
+        forcast_percent = 0.15
+    elif month in ["Jul", "Aug", "Sep"]:
+        forcast_percent = 0.20
+    elif month in ["Oct", "Nov", "Dec"]:
+        forcast_percent = 0.25
+    else:
+        return "Invalid month"
+    next_month_sales = sales * (1 + forecast_percent)
+    return next_month_sales
+
+def calculate_out_the_door_price(msrp, make, model, electric_code):
+    if make == "Honda" and model == "Accord":
+        percent_off_mrsp = 0.10
+    elif make == "Toyota" and model == "Rav4':
+        percent_off_mrsp = 0.15
+    elif electric_code == "Y":
+        percent_off_mrsp = 0.30 
+    else:
+        percent_off_mrsp = 0.05
+
+    new_mrsp = mrsp * (1 - percent_off_mrsp)
+    sales_tax = new_msrp * 0.07
+    total_price = new_msrp + sales_tax
+    return total_price
+
+def calculated_discount(quantity, price, discount_rate):
+    discount_amount = quantity * price * discount_rate 
+    discounted_price = quantity * price - discount_amount 
+    return discount_amount, discounted_price
+
+def calculated_exam_scores(last_name, scores):
+    total_points = sum(scores)
+    average = total_points / len(scores)
+    return total_points, average 
+
+while True:
+    run_program = input("Do you want to run the program? (Yes or No): ")
+    if run_program.lower() == "Yes":
+
+      print("\n--- Question 1 ---")
+      while True:
+          month_input = input("Enter month (Jan-Dec): ")
+          sales_input = float(input("Enter sales: "))
+          next_sales = calculate_forecast(month_input, sales_input)
+          if next_sales != "Invalid month":
+               print(f'Next months sales: {next_sales:.2f}")
+               break
+          else:
+               print("Invalid month, Please try again.")
+
+
+      print("\n--- Question 2 ---")
+      total_msrp_sum = 0 
+      total_sales_price_sum = 0
+      while True:
+          run_q2 = input("Do you want to enter car details? (Yes or No): ")
+          if run_q2.lower() == "Yes":
+              make = input("Enter make: ")
+              model = input("Enter model: ")
+              electric_code = input("Is it an electric vehicle? (Y/N): ").upper()
+              msrp = float(input("Enter MSRP: "))
+
+              out_the_door = calculated_out_the_door_price(msrp, make, model, electric_code)
+              print(f"Out the door price: {out_the_door:.2f}")
+
+              total_msrp_sum += msrp
+              total_sales_price_sum += out_the_door
+          else:
+               break
+     print(f"\nTotal MSRP sum: {total_msrp_sum:.2f} ")
+     print(f"Total sales price sum: {total_sales_price_sum:.2f"}")
+
+
+
+     print("\n--- Advanced Function 1 ---")
+     quantity = int(input("Enter quantity: "))
+     print = float(input("Enter price: "))
+     discount_rate = float(input("Enter discount rate (e.g., 0.10 for 10%): "))
+     discount_amount, discounted_price = calculate_discount(quantity, price, discount_rate)
+     print(f"Quantity: {quantity}")
+     print(f"Price: {price:.2f}")
+     print(f"Discount Amount: {discount_amount:.2f}")
+     print(f"Discounted Price: {discounted_price:.2f}")
+
+
+
+    print("\n--- Advanced Function 2 ---")
+    student_last_name = input("Enter students last name: ")
+    exam_scores = []
+    for i in range(3):
+        score = float(input(f"Enter exam score {i+1}: "))
+        exam_scores.append(score)
+
+    total_points, average_score = calculate_exam_scores(students_last_name, exam_scores)
+    print(f"Student Last Name: {student_last_name}")
+    print(f"Total Points: {total_points:.2f}")
+    print(f"Average Exam Score: {average_score:.2f}")
+
+elif run_program.lower() == "no"
+    break
+else:
+    print("Invalid input. Please enter 'Yes' or 'No'.")
+      
