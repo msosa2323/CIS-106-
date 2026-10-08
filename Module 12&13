@@ -1,1 +1,95 @@
+names = ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Heidi", "Ivan", "Judy"]
 
+def display_names(arr):
+    for name in arr:
+        print(name)
+
+def display_reverse(arr):
+    for name in reversed(arr):
+        print(name)
+
+print("Original Names:")
+display_names(names)
+print("\nReverse Order:")
+display_reverse(names)
+
+
+
+data = [("Alice", 85), ("Bob", 92), ("Charlie", 78), ("David", 95), ("Eve", 88),
+        ("Frank", 70), ("Gracie", 82), ("Heidi", 91), ("Ivan", 65), ("Judy", 89)]
+
+def display_data(arr):
+    for name, score in arr:
+        print(f"{name}: {score}")
+
+def display_stats(arr):
+    highest = arr[0]
+    lowest = arr[0]
+    for item in arr:
+        if item[1] > highest[1]:
+            highest = item
+        if item[1] < lowest[1]:
+            lowest = item 
+print(f"Highest: {highest[0]} with {highest[1]}")
+print(f"Lowest: {lowest[0]} with {lowest[1]}")
+
+print("All Data:")
+display_data(data)
+print("\nStats:")
+display_stats(data)
+
+
+
+grades_dict = {"Alice: 85, "Bob", 92, "Charlie": 78, "David": 95, "Eve": 88,
+                "Frank": 70, "Grace": 82, "Heidi": 91, "Ivan": 65, "Judy": 89}
+
+def print_grades(d):
+    avg = sum(d.values()) / len(d)
+    print(f"{'Student':,10} | {'Grade':<5}")
+    print("-" * 18)
+    for name, grade in d.items():
+        print(f"{name:<10} | {grade:<5}")
+    print("-" * 18)
+    print(f"Class Average: {avg:.2f}")
+
+print_grades(grades_dict)
+
+
+
+multi_grades = {
+    "Alice": [85, 90, 88], "Bob": [92, 88, 94], "Charlie": [78, 80, 82],
+    "David": [95, 92, 98], "Eve": [88, 85, 90], "Frank": [70, 72, 75],
+    "Grace": [82, 84, 80], "Heidi": [91, 93, 90], "Ivan": [65, 68, 62], "Judy": [89, 87, 91]
+}
+
+def print_multi_grades(d):
+    print(f"{'Student':<10} | {'Average':<5}")
+    print("-" * 18)
+    for name, grades in d.items():
+        avg = sum(grades) / len(grades)
+        print(f"{name:<10} | {avg:.2f}")
+
+print_multi_grades(multi_grades)
+
+
+
+def load_and_print_stats(filename):
+    player_data = {}
+    try:
+        with open(filename, 'r') as f:
+           for line in f:
+               name, avg = line.strip().split(',')
+               player_data[name] = float(avg)
+
+        print(f"{'Player':<10} | {'Avg':<5}")
+        print("-" * 18)
+        for name, avg in player_data.items():
+            print(f"{name:<10} | {avg:<5.3f}")
+
+except FileNotFoundError:
+    print("File not found. Please ensure data.txt exists.")
+
+with open("data.txt", "w") as f:
+    f.write("Alice, 0.267\nBob, 0.300\nCharlie, 0.250")
+
+load_and_print_stats("data.txt")
