@@ -131,21 +131,55 @@ print_multi_grade_stats(student_multi_grades)
 
 
 
-def load_and_print_stats(filename):
-    player_data = {}
-    try:
-        with open(filename, 'r') as f:
-           for line in f:
-               name, avg = line.strip().split(',')
-               player_data[name] = float(avg)
+def load_and_print_players(filename):
 
-        print(f"{'Player':<10} | {'Avg':<5}")
-        print("-" * 18)
-        for name, avg in player_data.items():
-            print(f"{name:<10} | {avg:<5.3f}")
+player_data = [
+    "Smith, 0.275",
+    "Jones, 0.300",
+    "Garcia, 0.288",
+    "Miller, 0312",
+    "Davis, 0.262",
+    "Rodriguez, 0.295",
+    "Martinez, 0.270",
+    "Hernendez, 0.305",
+    "Lopez, 0.282",
+    "Gonalez, 0.291"
+]
+
+def create_player_file(filename):
+    try:
+        with open(filename, 'w') as file:
+            for entry in player_data:
+                file.write(entry + "\n")
+        print("Successfully created {filename}")
+    except Exception as e:
+        print(f"An error occured: {e}")
+
+create_player_file("players.txt")
+
+    player_dict = {}
+    try:
+        with open(filename, 'r') as file:
+           for line in file:
+
+                parts = line.strip().split(',')
+                if len(parts) == 2:
+                    name = parts[0]
+                    avg = float(parts[1])
+                    player_dict[name] = avg
+
+        print(f"{'Player Name':<15} | {'Batting Avg':<10}")
+        print("-" * 30)
+        for name, avg in player_dict.items():
+            print(f"{name:<15} | {avg:<10.3f}")
 
 except FileNotFoundError:
-    print("File not found. Please ensure data.txt exists.")
+    print("Error: The File 'players.txt' was not found.")
+except ValueError:
+    print("Error: Ensure the file contains valid numeric averages.")
+
+print("\nProblem 6 Output (Requires players.txt):")
+load_and_print_players("players.txt")
 
 with open("data.txt", "w") as f:
     f.write("Alice, 0.267\nBob, 0.300\nCharlie, 0.250")
