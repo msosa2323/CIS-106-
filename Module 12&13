@@ -14,7 +14,6 @@ print("\nReverse Order:")
 display_reverse(names)
 
 
-
 data = [("Alice", 85), ("Bob", 92), ("Charlie", 78), ("David", 95), ("Eve", 88),
         ("Frank", 70), ("Gracie", 82), ("Heidi", 91), ("Ivan", 65), ("Judy", 89)]
 
@@ -23,15 +22,11 @@ def display_data(arr):
         print(f"{name}: {score}")
 
 def display_stats(arr):
-    highest = arr[0]
-    lowest = arr[0]
-    for item in arr:
-        if item[1] > highest[1]:
-            highest = item
-        if item[1] < lowest[1]:
-            lowest = item 
-print(f"Highest: {highest[0]} with {highest[1]}")
-print(f"Lowest: {lowest[0]} with {lowest[1]}")
+    highest = max(arr, key=lambda x: x[1])
+    lowest = min(arr, key=lambda x: x[1])
+    
+    print(f"Highest: {highest[0]} with {highest[1]}")
+    print(f"Lowest: {lowest[0]} with {lowest[1]}")
 
 print("All Data:")
 display_data(data)
@@ -40,36 +35,99 @@ display_stats(data)
 
 
 
-grades_dict = {"Alice: 85, "Bob", 92, "Charlie": 78, "David": 95, "Eve": 88,
-                "Frank": 70, "Grace": 82, "Heidi": 91, "Ivan": 65, "Judy": 89}
-
-def print_grades(d):
-    avg = sum(d.values()) / len(d)
-    print(f"{'Student':,10} | {'Grade':<5}")
-    print("-" * 18)
-    for name, grade in d.items():
-        print(f"{name:<10} | {grade:<5}")
-    print("-" * 18)
-    print(f"Class Average: {avg:.2f}")
-
-print_grades(grades_dict)
-
-
-
 multi_grades = {
-    "Alice": [85, 90, 88], "Bob": [92, 88, 94], "Charlie": [78, 80, 82],
-    "David": [95, 92, 98], "Eve": [88, 85, 90], "Frank": [70, 72, 75],
-    "Grace": [82, 84, 80], "Heidi": [91, 93, 90], "Ivan": [65, 68, 62], "Judy": [89, 87, 91]
+    "Alice Smith": [85, 90, 88],
+    "Bob Jones": [92, 88, 94],
+    "Charlie Brown": [78, 80, 82],
+    "David Miller": [95, 92, 98],
+    "Eve Davis": [88, 85, 90],
+    "Frank Wilson": [70, 72, 75],
+    "Grace Taylor": [82, 84, 80],
+    "Heidi Moore": [91, 93, 90],
+    "Ivan Anderson": [65, 68, 62],
+    "Judy Thomas": [89, 87, 91],
 }
 
-def print_multi_grades(d):
-    print(f"{'Student':<10} | {'Average':<5}")
-    print("-" * 18)
-    for name, grades in d.items():
-        avg = sum(grades) / len(grades)
-        print(f"{name:<10} | {avg:.2f}")
+
+def print_multi_grades(grades_by_student):
+    print(f"{'Last Name':<12} | {'Low':<5} | {'High':<5}")
+    print("-" * 30)
+
+    for full_name, grades in grades_by_student.items():
+        last_name = full_name.split()[-1]
+        lowest = min(grades)
+        highest = max(grades)
+        print(f"{last_name:<12} | {lowest:<5} | {highest:<5}")
+
 
 print_multi_grades(multi_grades)
+
+
+student_data = {
+    "Alice": 85,
+    "Bob": 92,
+    "Charlie": 78,
+    "Diana": 95,
+    "Ethan": 88
+}
+
+def print_student_grades(data):
+    print(f"{'Student Name':<15} | {'Grade':<5}")
+    print("-" * 25)
+
+    if not data:
+        print("No student grades available.")
+        return
+
+    total_grade = 0
+    for name, grade in data.items():
+        print(f"{name:<15} | {grade:<5}")
+        total_grade += grade
+
+    avg_grade = total_grade / len(data)
+    print("-" * 25)
+    print(f"{'Class Average':<15} | {avg_grade:<5.2f}")
+
+print("Problem 4 Output:")
+print_student_grades(student_data)
+        
+
+
+student_multi_grades = {
+    "Alice Smith": [85, 90, 88],
+    "Bob Jones": [92, 88, 94],
+    "Charlie Brown": [78, 80, 82],
+    "David Miller": [95, 92, 98],
+    "Eve Davis": [88, 85, 90],
+}
+
+
+def print_multi_grade_stats(data):
+    print(f"{'Student Name':<15} | {'Grades':<15} | {'Average':<7}")
+    print("-" * 45)
+
+    class_averages = []
+
+    for name, grades in data.items():
+        if not grades:
+            print(f"{name:<15} | {'[]':<15} | {'N/A':<7}")
+            continue
+
+        avg = sum(grades) / len(grades)
+        class_averages.append(avg)
+        print(f"{name:<15} | {str(grades):<15} | {avg:<7.2f}")
+
+    print("-" * 45)
+
+    if class_averages:
+        class_avg = sum(class_averages) / len(class_averages)
+        print(f"Class Average for all students: {class_avg:.2f}")
+    else:
+        print("Class Average for all students: N/A")
+
+
+print("\nProblem 5 Output:")
+print_multi_grade_stats(student_multi_grades)
 
 
 
