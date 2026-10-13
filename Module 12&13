@@ -146,8 +146,7 @@ player_data = [
 
 def create_player_file(filename):
     try:
-        for filename in player_data:
-            with open(filename, "w", encoding="utf-8") as file:
+        with open(filename, "w", encoding="utf-8") as file:
               for entry in player_data:
                   file.write(entry + "\n")
         print(f"Successfully created {filename}")
@@ -165,14 +164,27 @@ def load_and_print_players(filename):
                     avg = float(parts[1].strip())
                     player_dict[name] = avg
 
-        print(f"{'Name':<15} | {'Avergae':<10}")
-        print("-" * 25)
+        print(f"\n{'Name':<15} | {'Average':<10}")
+        print("-" * 28)
+
+        total_avg = 0
         for name, avg in player_dict.items():
             print(f"{name:<15} | {avg:<10.3f}")
+            total_avg += avg
+
+        if player_dict:
+            class_avg = total_avg / len(player_dict)
+            print("-" * 28)
+            print(f"{'Class Average':<15} | {class_avg:<10.3f}")
+
     except FileNotFoundError:
         print(f"Error: The file '{filename}' was not found.")
     except Exception as e:
         print(f"An error occurred: {e}")
 
-create_player_file("players.txt")
-load_and_print_players("players.txt")
+file_to_use = "/tmp/player.txt"
+
+create_player_file(file_to_use)
+load_and_print_players(file_to_use)
+
+Answered question's 1-6
