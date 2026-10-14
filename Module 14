@@ -1,1 +1,41 @@
+class Employee:
+  
+  def __init__(self, first, last, pay):
+      self.first = first
+      self.last = last
+      self.pay = pay
+      self.email = first + ' . ' + last + '@company.com'
 
+  def fullname(self):
+      return '{} {}'.format(self.first, self.last)
+
+  def calculated_bounus(self, bonus_rate):
+      return self.pay * bonus_rate
+
+    
+emp_1 = Employee('Corey', 'Schafer', 50000)
+emp_2 = Employee('Test', 'User', 60000)
+
+emp_1.fullname()
+print(Employee.fullname(emp_1))
+emp_2.fullname()
+print(Employee.fullname(emp_2))
+
+rate = 0.10
+print(f"{emp_1.fullname()} bonus: {emp_1.calculated_bonus(rate)}")
+print(f"{emp_2.fullname()} bonus: {emp_2.calculated_bonus(rate)}")
+
+
+class Student:
+
+    def __init__(self, name, grade):
+        self.name = name
+        self.grade = grade
+
+    def study(self):
+        return f"{self.name} is studying hard!"
+
+student_1 = Student("Alex", 10)
+
+print(student_1.name)
+print(student_1.study())
