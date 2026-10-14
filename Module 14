@@ -27,15 +27,57 @@ print(f"{emp_2.fullname()} bonus: {emp_2.calculated_bonus(rate)}")
 
 
 class Student:
+  
+  def __init__(self, first, last, district_code, credits):
+      self.first = first
+      self.last = last
+      self.district_code = district_code
+      self.credits = credits
 
-    def __init__(self, name, grade):
-        self.name = name
-        self.grade = grade
+  def fullname(self):
+      return f"{self.first} {self.last}"
+    
+  def compute_tuition(self):
 
-    def study(self):
-        return f"{self.name} is studying hard!"
+      if self.district_code == 'I':
+          rate = 250
+      else:
+           rate = 500
+      return self.credits * rate
+    
+student1 = Student('Alice', 'Smith', 'I', 12)
+student2 = Student('Bob', 'Jones', 'O', 13)
 
-student_1 = Student("Alex", 10)
+print(f"{student1.fullname()} tuititon owed: ${student1.compute_tuition()}")
+print(f"{student2.fullname()} tuition owed: ${student2.compute_tuition()}")
 
-print(student_1.name)
-print(student_1.study())
+
+class Student: 
+
+    DISTRICT_RATES = {
+        'X': 800.00
+        'G': 250.00
+        '0': 500.00
+}
+
+def __init__(self, first, last, district_code, credits):
+      self.first = first
+      self.last = last
+      self.district_code = district_code
+      self.credits = credits
+
+  def fullname(self):
+      return f"{self.first} {self.last}"
+    
+  def compute_tuition(self):
+
+      rate = self.DISTRICT_RATES.get(self.district_code, 500)
+      return self.credits * rate
+
+student1 = Student('Alice', 'Smith', 'X', 12)
+student2 = Student('Bob', 'Jones', 'O', 13)
+student3 = Student('Chralie', 'Brown', 'G', 10)
+
+print(f"{student1.fullname()} tuititon owed: ${student1.compute_tuition()}")
+print(f"{student2.fullname()} tuition owed: ${student2.compute_tuition()}")
+print(f"{student3.fullname()} tuititon owed: ${student3.compute_tuition()}")
